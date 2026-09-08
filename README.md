@@ -2,18 +2,6 @@
 
 Static bilingual portfolio for Alejandro Veloz.
 
-## Deploy
-
-Upload the contents of this folder to the web root for `alejandroveloz.dev` / `www.alejandroveloz.dev`.
-
-No build step is required. The site uses plain HTML, CSS and JavaScript.
-
-Files:
-- `index.html`
-- `styles.css`
-- `app.js`
-- `resume/` (English + Spanish PDF/DOCX)
-
 ## Important before launch
 
 1. Configure both `alejandroveloz.dev` and `www.alejandroveloz.dev` to the same site.
@@ -27,3 +15,21 @@ Files:
 ## Product screenshots
 
 The selected Marvin and Easy Quotes screenshots are included under `assets/products/`. Product cards stay secondary to the engineering story; clicking them opens an in-page case study.
+
+## Deploy as a Static Site in Coolify
+
+This project is intentionally plain static HTML/CSS/JavaScript. No Dockerfile and no build step are required.
+
+Recommended Coolify setup:
+- Resource type: Static Site
+- Repository root: `/`
+- Build command: leave empty
+- Publish directory: `/` or the repository root, depending on the Coolify UI version
+- Domains: `alejandroveloz.dev` and optionally `www.alejandroveloz.dev`
+
+Recommended canonical hostname: `https://alejandroveloz.dev`, with `www` redirecting to it.
+
+Cloudflare:
+- `A @ -> <your VPS IP>` (Proxied)
+- `CNAME www -> alejandroveloz.dev` (Proxied)
+

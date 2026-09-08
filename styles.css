@@ -36,3 +36,11 @@ a{color:inherit;text-decoration:none}.container{width:min(var(--max),calc(100% -
 .case-head{max-width:760px;margin-bottom:42px}.case-head h2{font-size:clamp(42px,6vw,76px);line-height:.95;letter-spacing:-.055em;margin:14px 0 18px}.case-head p{color:var(--muted);font-size:18px}
 .case-facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:28px 0 52px}.case-facts div{padding:20px;border-right:1px solid var(--line)}.case-facts div:last-child{border-right:0}.case-facts strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#777780;margin-bottom:5px}.case-gallery{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}.case-gallery img{width:100%;display:block;border-radius:13px;border:1px solid var(--line);background:white}.case-gallery .case-main{grid-row:span 2;height:100%;object-fit:cover;object-position:left top}.case-note{margin-top:34px;padding-top:28px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:40px}.case-note h3{font-size:22px;margin:0 0 10px}.case-note p{color:var(--muted);margin:0}.case-cta{display:inline-block;margin-top:30px;color:var(--accent);font-weight:800}
 @media(max-width:850px){.product-card-visual{grid-template-columns:1fr}.product-shot{border-left:0;border-top:1px solid var(--line);min-height:300px}.product-card-visual h3{margin-top:38px}.case-shell{padding:28px}.case-gallery,.case-note{grid-template-columns:1fr}.case-gallery .case-main{grid-row:auto}.case-facts{grid-template-columns:1fr}.case-facts div{border-right:0;border-bottom:1px solid var(--line)}.case-facts div:last-child{border-bottom:0}}
+
+.nav-social{font-size:13px;color:var(--muted);padding:10px 2px}
+.nav-social:hover,.social-link:hover,.footer-links a:hover{color:var(--accent)}
+.contact-links{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap}
+.social-link{font-weight:800;color:var(--muted);font-size:16px}
+.footer-links{display:flex;gap:18px;align-items:center}
+.footer-links a{color:#8a8a92}
+@media(max-width:620px){.nav-social{display:none}.footer-links{display:block}.footer-links a,.footer-links span{display:block;margin-bottom:5px}}

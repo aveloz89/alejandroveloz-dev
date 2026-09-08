@@ -33,3 +33,6 @@ Cloudflare:
 - `A @ -> <your VPS IP>` (Proxied)
 - `CNAME www -> alejandroveloz.dev` (Proxied)
 
+## Brand assets
+
+`assets/brand/` contains `logo.svg`, `logo-light.svg`, favicon assets, an Apple touch icon, and `og-image.png` for LinkedIn/WhatsApp/social previews. `logo-light.svg` is the variant reserved for a future light mode and is not referenced anywhere yet.

@@ -36,3 +36,18 @@ Cloudflare:
 ## Brand assets
 
 `assets/brand/` contains `logo.svg`, `logo-light.svg`, favicon assets, an Apple touch icon, and `og-image.png` for LinkedIn/WhatsApp/social previews. `logo-light.svg` is the variant reserved for a future light mode and is not referenced anywhere yet.
+
+## Contact modal and email delivery
+
+The consulting CTA opens a bilingual contact form and posts via AJAX to FormSubmit, addressed to `aveloz_89@hotmail.com`. No backend or secret is embedded in the static site. The contact-section email link remains available as a fallback.
+
+Before relying on the form in production:
+1. Submit a test inquiry from the deployed domain.
+2. Open the FormSubmit activation email in the recipient inbox (check junk) and confirm the destination.
+3. Submit another inquiry and verify receipt and Reply-To behavior. A successful API response confirms acceptance, not inbox delivery.
+
+The form includes required fields, length limits, a honeypot, duplicate-submit prevention and a 20-second timeout. Failed requests retain the entered text. FormSubmit processes the submitted name, email, company and message; review its service/privacy terms for your deployment. Provider availability and spam filtering affect delivery.
+
+Documentation: https://formsubmit.co/ and https://formsubmit.co/ajax-documentation
+
+When changing `app.js` or `styles.css`, update their `?v=` values in `index.html` using the first 12 hexadecimal characters of each file's SHA-256 digest, and regenerate the static ZIP.

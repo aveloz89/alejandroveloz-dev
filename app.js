@@ -183,6 +183,9 @@ const copy = {
   }
 };
 
+Object.assign(copy["en"], {"form.close": "Close form", "form.intro": "Share what you need and I’ll reply by email.", "form.name": "Name", "form.email": "Email", "form.company": "Company (optional)", "form.message": "What would you like to build or improve?", "form.privacy": "I’ll use your details to respond to your inquiry.", "form.send": "Send message", "form.sending": "Sending…", "form.success": "Your message was submitted. Thank you for getting in touch.", "form.error": "Your message could not be sent. Please try again, or contact me at aveloz_89@hotmail.com."});
+Object.assign(copy["es"], {"form.close": "Cerrar formulario", "form.intro": "Cuéntame qué necesitas y te responderé por correo.", "form.name": "Nombre", "form.email": "Correo electrónico", "form.company": "Empresa (opcional)", "form.message": "¿Qué te gustaría construir o mejorar?", "form.privacy": "Usaré tus datos para responder a tu consulta.", "form.send": "Enviar mensaje", "form.sending": "Enviando…", "form.success": "Tu mensaje fue enviado. Gracias por escribirme.", "form.error": "No se pudo enviar tu mensaje. Inténtalo de nuevo o escríbeme a aveloz_89@hotmail.com."});
+
 const toggle = document.getElementById("langToggle");
 const savedLanguage = localStorage.getItem("av-lang");
 let lang = ["en", "es"].includes(savedLanguage) ? savedLanguage : (navigator.language?.toLowerCase().startsWith("es") ? "es" : "en");
@@ -474,3 +477,57 @@ caseModal.addEventListener("click",e=>{ if(e.target===caseModal) caseModal.close
 
 caseContent.addEventListener("click", e => { if (e.target.closest(".case-method-link")) caseModal.close(); });
 applyLanguage(lang);
+
+
+const contactModal = document.getElementById("contactModal");
+const contactForm = document.getElementById("contactForm");
+const contactFields = document.getElementById("contactFields");
+const contactStatus = document.getElementById("contactStatus");
+const contactSubmit = document.getElementById("contactSubmit");
+let contactSending = false;
+document.getElementById("contactOpen").addEventListener("click", () => contactModal.showModal());
+document.getElementById("contactClose").addEventListener("click", () => contactModal.close());
+contactModal.addEventListener("click", event => { if (event.target === contactModal) contactModal.close(); });
+contactForm.addEventListener("submit", async event => {
+  event.preventDefault();
+  if (contactSending || !contactForm.reportValidity()) return;
+  const values = Object.fromEntries(new FormData(contactForm));
+  if (values._honey) return;
+  if (!values.name.trim() || !values.message.trim()) {
+    const field = !values.name.trim() ? contactForm.elements.name : contactForm.elements.message;
+    field.value = "";
+    field.reportValidity();
+    return;
+  }
+  contactSending = true;
+  contactFields.disabled = true;
+  contactSubmit.textContent = copy[lang]["form.sending"];
+  contactStatus.textContent = "";
+  contactStatus.removeAttribute("data-state");
+  contactForm.setAttribute("aria-busy", "true");
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch("https://formsubmit.co/ajax/aveloz_89@hotmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ ...values, _subject: "Consulta desde alejandroveloz.dev", _template: "table" }),
+      signal: controller.signal
+    });
+    const result = await response.json();
+    if (!response.ok || ![true, "true"].includes(result.success)) throw new Error("Submission rejected");
+    contactForm.reset();
+    contactStatus.dataset.state = "success";
+    contactStatus.textContent = copy[lang]["form.success"];
+  } catch {
+    contactStatus.dataset.state = "error";
+    contactStatus.textContent = copy[lang]["form.error"];
+  } finally {
+    clearTimeout(timeout);
+    contactSending = false;
+    contactFields.disabled = false;
+    contactForm.removeAttribute("aria-busy");
+    contactSubmit.textContent = copy[lang]["form.send"];
+    if (contactModal.open) contactStatus.focus();
+  }
+});

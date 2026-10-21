@@ -19,8 +19,8 @@
   <meta name="twitter:image" content="https://alejandroveloz.dev/assets/brand/og-image.png" />
   <title>Alejandro Veloz — Senior Software Engineer</title>
   <link rel="canonical" href="https://alejandroveloz.dev/" />
-  <link rel="stylesheet" href="styles.css?v=fabedeaa96e7" />
-  <script defer src="app.js?v=ca7319c4beaf"></script>
+  <link rel="stylesheet" href="styles.css?v=77dd1d8cf169" />
+  <script defer src="app.js?v=4186f0116c16"></script>
 </head>
 <body>
   <div class="noise"></div>
@@ -305,7 +305,7 @@
       <button class="case-close" id="contactClose" type="button" aria-label="Close form" data-i18n-aria="form.close">×</button>
       <span class="kicker" data-i18n="contact.kicker">Contact</span>
       <h2 id="contactTitle" data-i18n="services.cta">Tell me about your project</h2>
-      <p class="contact-intro" data-i18n="form.intro">Share what you need and I’ll reply by email.</p>
+      <p class="contact-intro" data-i18n="form.intro">Tell me what you need. Choose email or continue the conversation on WhatsApp.</p>
       <form id="contactForm">
         <fieldset id="contactFields">
           <label for="contactName" data-i18n="form.name">Name</label>
@@ -318,7 +318,11 @@
           <textarea id="contactMessage" name="message" rows="5" required maxlength="5000"></textarea>
           <div class="contact-trap" aria-hidden="true"><label for="contactWebsite">Leave this empty</label><input id="contactWebsite" name="_honey" tabindex="-1" autocomplete="off"></div>
           <p class="contact-privacy" data-i18n="form.privacy">I’ll use your details to respond to your inquiry.</p>
-          <button class="button" id="contactSubmit" type="submit" data-i18n="form.send">Send message</button>
+          <div class="contact-actions">
+            <button class="button" id="contactSubmit" type="submit" data-i18n="form.send">Send by email</button>
+            <a class="button button-ghost" id="contactWhatsApp" href="https://wa.me/528114870809" target="_blank" rel="noopener noreferrer" data-i18n="form.whatsapp">Continue on WhatsApp</a>
+          </div>
+          <p class="contact-privacy" data-i18n="form.whatsappHint">WhatsApp opens with your draft. Review it and tap Send there; email is optional for this option.</p>
         </fieldset>
         <p id="contactStatus" role="status" aria-live="polite" tabindex="-1"></p>
       </form>

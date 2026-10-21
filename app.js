@@ -186,6 +186,20 @@ const copy = {
 Object.assign(copy["en"], {"form.close": "Close form", "form.intro": "Share what you need and I’ll reply by email.", "form.name": "Name", "form.email": "Email", "form.company": "Company (optional)", "form.message": "What would you like to build or improve?", "form.privacy": "I’ll use your details to respond to your inquiry.", "form.send": "Send message", "form.sending": "Sending…", "form.success": "Your message was submitted. Thank you for getting in touch.", "form.error": "Your message could not be sent. Please try again, or contact me at aveloz_89@hotmail.com."});
 Object.assign(copy["es"], {"form.close": "Cerrar formulario", "form.intro": "Cuéntame qué necesitas y te responderé por correo.", "form.name": "Nombre", "form.email": "Correo electrónico", "form.company": "Empresa (opcional)", "form.message": "¿Qué te gustaría construir o mejorar?", "form.privacy": "Usaré tus datos para responder a tu consulta.", "form.send": "Enviar mensaje", "form.sending": "Enviando…", "form.success": "Tu mensaje fue enviado. Gracias por escribirme.", "form.error": "No se pudo enviar tu mensaje. Inténtalo de nuevo o escríbeme a aveloz_89@hotmail.com."});
 
+
+Object.assign(copy.en, {
+  "form.intro": "Tell me what you need. Choose email or continue the conversation on WhatsApp.",
+  "form.send": "Send by email",
+  "form.whatsapp": "Continue on WhatsApp",
+  "form.whatsappHint": "WhatsApp opens with your draft. Review it and tap Send there; email is optional for this option."
+});
+Object.assign(copy.es, {
+  "form.intro": "Cuéntame qué necesitas. Elige correo o continúa la conversación por WhatsApp.",
+  "form.send": "Enviar por correo",
+  "form.whatsapp": "Continuar por WhatsApp",
+  "form.whatsappHint": "WhatsApp abre con tu borrador. Revísalo y pulsa Enviar allí; el correo es opcional para esta opción."
+});
+
 const toggle = document.getElementById("langToggle");
 const savedLanguage = localStorage.getItem("av-lang");
 let lang = ["en", "es"].includes(savedLanguage) ? savedLanguage : (navigator.language?.toLowerCase().startsWith("es") ? "es" : "en");
@@ -531,3 +545,18 @@ contactForm.addEventListener("submit", async event => {
     if (contactModal.open) contactStatus.focus();
   }
 });
+
+
+const contactWhatsApp = document.getElementById("contactWhatsApp");
+function updateWhatsAppLink() {
+  const value = name => contactForm.elements.namedItem(name).value.trim();
+  const parts = [lang === "es" ? "Hola Alejandro, me gustaría contarte sobre un proyecto." : "Hi Alejandro, I’d like to discuss a project."];
+  for (const name of ["name", "email", "company"]) {
+    if (value(name)) parts.push(`${copy[lang]["form." + name]}: ${value(name)}`);
+  }
+  if (value("message")) parts.push(value("message"));
+  contactWhatsApp.href = "https://wa.me/528114870809?text=" + encodeURIComponent(parts.join("\n\n"));
+}
+contactForm.addEventListener("input", updateWhatsAppLink);
+contactWhatsApp.addEventListener("click", updateWhatsAppLink);
+updateWhatsAppLink();

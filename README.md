@@ -51,3 +51,5 @@ The form includes required fields, length limits, a honeypot, duplicate-submit p
 Documentation: https://formsubmit.co/ and https://formsubmit.co/ajax-documentation
 
 When changing `app.js` or `styles.css`, update their `?v=` values in `index.html` using the first 12 hexadecimal characters of each file's SHA-256 digest, and regenerate the static ZIP.
+
+The same modal also offers WhatsApp at +52 81 1487 0809. It pre-fills a draft with the entered fields; the visitor must send it in WhatsApp. Email is not required for the WhatsApp option. A real FormSubmit activation request was accepted on 2026-10-21; recipient confirmation and end-to-end delivery verification remain pending.

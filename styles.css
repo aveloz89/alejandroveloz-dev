@@ -107,3 +107,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 #contactStatus[data-state="success"]{color:var(--accent)}
 #contactFields:disabled{opacity:.6}
 #contactSubmit,.services-cta{cursor:pointer;font-family:inherit}
+
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px}
+#contactFields:disabled #contactWhatsApp{pointer-events:none}
+@media(max-width:520px){.contact-actions>*{width:100%}}

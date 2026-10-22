@@ -19,8 +19,8 @@
   <meta name="twitter:image" content="https://alejandroveloz.dev/assets/brand/og-image.png" />
   <title>Alejandro Veloz — Senior Software Engineer</title>
   <link rel="canonical" href="https://alejandroveloz.dev/" />
-  <link rel="stylesheet" href="styles.css?v=edf28fa6126c" />
-  <script defer src="app.js?v=e907b81db293"></script>
+  <link rel="stylesheet" href="styles.css?v=77dd1d8cf169" />
+  <script defer src="app.js?v=4186f0116c16"></script>
 </head>
 <body>
   <div class="noise"></div>
@@ -245,7 +245,7 @@
           <article><span>03</span><h3 data-i18n="services.modernTitle">Legacy Modernization</h3><p data-i18n="services.modern">Modernize old applications, APIs, databases and architectures without gambling with business continuity.</p></article>
           <article><span>04</span><h3 data-i18n="services.consultTitle">Technical Consulting</h3><p data-i18n="services.consult">Architecture, .NET, SQL Server, performance, integrations, CI/CD and difficult existing systems.</p></article>
         </div>
-        <a class="button button-ghost services-cta" href="mailto:aveloz_89@hotmail.com" data-i18n="services.cta">Tell me about your project</a>
+        <button class="button button-ghost services-cta" id="contactOpen" type="button" data-i18n="services.cta">Tell me about your project</button>
       </div>
     </section>
 
@@ -296,6 +296,36 @@
     <div class="case-shell">
       <button class="case-close" id="caseClose" type="button" aria-label="Close case study" data-i18n-aria="case.close">×</button>
       <div id="caseContent"></div>
+    </div>
+  </dialog>
+
+
+  <dialog class="case-modal contact-modal" id="contactModal" aria-labelledby="contactTitle">
+    <div class="case-shell">
+      <button class="case-close" id="contactClose" type="button" aria-label="Close form" data-i18n-aria="form.close">×</button>
+      <span class="kicker" data-i18n="contact.kicker">Contact</span>
+      <h2 id="contactTitle" data-i18n="services.cta">Tell me about your project</h2>
+      <p class="contact-intro" data-i18n="form.intro">Tell me what you need. Choose email or continue the conversation on WhatsApp.</p>
+      <form id="contactForm">
+        <fieldset id="contactFields">
+          <label for="contactName" data-i18n="form.name">Name</label>
+          <input id="contactName" name="name" autocomplete="name" required maxlength="100">
+          <label for="contactEmail" data-i18n="form.email">Email</label>
+          <input id="contactEmail" name="email" type="email" autocomplete="email" required maxlength="254">
+          <label for="contactCompany" data-i18n="form.company">Company (optional)</label>
+          <input id="contactCompany" name="company" autocomplete="organization" maxlength="150">
+          <label for="contactMessage" data-i18n="form.message">What would you like to build or improve?</label>
+          <textarea id="contactMessage" name="message" rows="5" required maxlength="5000"></textarea>
+          <div class="contact-trap" aria-hidden="true"><label for="contactWebsite">Leave this empty</label><input id="contactWebsite" name="_honey" tabindex="-1" autocomplete="off"></div>
+          <p class="contact-privacy" data-i18n="form.privacy">I’ll use your details to respond to your inquiry.</p>
+          <div class="contact-actions">
+            <button class="button" id="contactSubmit" type="submit" data-i18n="form.send">Send by email</button>
+            <a class="button button-ghost" id="contactWhatsApp" href="https://wa.me/528114870809" target="_blank" rel="noopener noreferrer" data-i18n="form.whatsapp">Continue on WhatsApp</a>
+          </div>
+          <p class="contact-privacy" data-i18n="form.whatsappHint">WhatsApp opens with your draft. Review it and tap Send there; email is optional for this option.</p>
+        </fieldset>
+        <p id="contactStatus" role="status" aria-live="polite" tabindex="-1"></p>
+      </form>
     </div>
   </dialog>
 
